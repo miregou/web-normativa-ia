@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Web: IA para la Inclusión y sus Aplicaciones</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00A6FB;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #00A6FB;
+        }
+        .chat-history {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+        }
+        .user-message {
+            text-align: right;
+            margin-bottom: 0.75rem;
+        }
+        .user-message p {
+            background-color: #00A6FB;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem 1rem 0.25rem 1rem;
+            display: inline-block;
+            max-width: 80%;
+        }
+        .ai-message {
+            text-align: left;
+            margin-bottom: 0.75rem;
+        }
+        .ai-message p {
+            background-color: #e2e8f0;
+            color: #1e293b;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem 1rem 1rem 0.25rem;
+            display: inline-block;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+    <!-- 
+    Palette Name: Energetic & Playful
+    This webpage expands upon the infographic, structuring the content into a navigable single-page website format. It reuses all core assets including charts, color schemes, and the interactive Gemini API tools for text simplification and alt-text generation.
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this file. All visualizations are rendered via Canvas (Chart.js) or structured HTML/CSS with Tailwind.
+    -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-800">IA Inclusiva</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#introduction" class="nav-link font-semibold">Introducción</a>
+                <a href="#practices" class="nav-link font-semibold">Buenas Prácticas</a>
+                <a href="#regulations" class="nav-link font-semibold">Normativa Europea</a>
+                <a href="#applications" class="nav-link font-semibold">Aplicaciones</a>
+                <a href="#conclusion" class="nav-link font-semibold">Conclusión</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="introduction" class="bg-white">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <h1 class="text-5xl font-bold text-[#00A6FB] mb-4">La IA como Aliada de la Accesibilidad</h1>
+                <p class="max-w-3xl mx-auto text-xl text-[#545454]">
+                    Descubre cómo la Inteligencia Artificial puede transformar la creación de contenido accesible, y aprende las 10 prácticas clave para un uso ético, responsable y centrado en la persona.
+                </p>
+            </div>
+        </section>
+
+        <section id="practices" class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-[#545454]">Las 10 Prácticas Fundamentales</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Tarjetas de Prácticas -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">1</div>
+                        <h3 class="text-xl font-bold mb-2">Priorizar Accesibilidad Nativa</h3>
+                        <p>Usar la IA desde el inicio para generar contenido que cumpla con estándares como WCAG, en lugar de "parchear" la accesibilidad al final.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">2</div>
+                        <h3 class="text-xl font-bold mb-2">Fomentar la Personalización</h3>
+                        <p>Adaptar materiales a las necesidades específicas de cada persona. Un enfoque personalizado es más efectivo que un modelo único para todos.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">3</div>
+                        <h3 class="text-xl font-bold mb-2">Simplificar el Lenguaje</h3>
+                        <p>Reducir la carga cognitiva reescribiendo textos complejos en un lenguaje claro y conciso, conocido como Lectura Fácil.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">4</div>
+                        <h3 class="text-xl font-bold mb-2">Generar Contenidos Alternativos</h3>
+                        <p>Automatizar la creación de texto alternativo para imágenes, transcripciones de audio y subtítulos para vídeos.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#F15421] mb-2">5</div>
+                        <h3 class="text-xl font-bold mb-2">Supervisión Humana Constante</h3>
+                        <p>La IA es una herramienta de asistencia, no un sustituto. Un profesional debe revisar y validar siempre el contenido generado.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">6</div>
+                        <h3 class="text-xl font-bold mb-2">Lenguaje Centrado en la Persona</h3>
+                        <p>Instruir a la IA para que utilice un enfoque "persona primero" (ej. "persona con autismo") y evitar etiquetas o generalizaciones.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">7</div>
+                        <h3 class="text-xl font-bold mb-2">Garantizar la Privacidad</h3>
+                        <p>Utilizar plataformas de IA que cumplan con normativas como el RGPD y anonimizar siempre los datos sensibles.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">8</div>
+                        <h3 class="text-xl font-bold mb-2">Auditar y Combatir Sesgos</h3>
+                        <p>Ser crítico con los resultados y cuestionar conclusiones que parezcan basadas en estereotipos, auditando la equidad del sistema.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">9</div>
+                        <h3 class="text-xl font-bold mb-2">Co-diseñar con el Colectivo</h3>
+                        <p>Involucrar a personas con discapacidad en la prueba y validación de las herramientas de IA, siguiendo el principio "Nada sobre nosotros sin nosotros".</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-transform duration-300 md:col-start-2 lg:col-start-auto">
+                        <div class="text-3xl font-bold text-[#00A6FB] mb-2">10</div>
+                        <h3 class="text-xl font-bold mb-2">Fomentar Formación Continua</h3>
+                        <p>El campo de la IA y la accesibilidad evoluciona rápidamente. El aprendizaje constante sobre nuevas herramientas y guías éticas es esencial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="regulations" class="py-16 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-4 text-[#545454]">Marco Regulatorio Europeo: La Ley de IA</h2>
+                <p class="max-w-3xl mx-auto text-center text-lg mb-12">
+                    La Unión Europea ha sido pionera en establecer un marco legal para la IA, conocido como la Ley de Inteligencia Artificial. Su objetivo es garantizar que los sistemas de IA sean seguros y respeten los derechos fundamentales, clasificándolos según su nivel de riesgo.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <!-- Riesgo Inaceptable -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-red-500">
+                        <h3 class="text-xl font-bold mb-3 text-red-600">Riesgo Inaceptable</h3>
+                        <p class="font-semibold mb-2">Sistemas Prohibidos</p>
+                        <p class="text-sm">Aquellos que representan una clara amenaza para la seguridad y los derechos de las personas. Por ejemplo: puntuación social por parte de gobiernos o manipulación del comportamiento.</p>
+                    </div>
+                    <!-- Alto Riesgo -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-orange-500">
+                        <h3 class="text-xl font-bold mb-3 text-orange-600">Alto Riesgo</h3>
+                        <p class="font-semibold mb-2">Sistemas Regulados</p>
+                        <p class="text-sm">Sistemas que pueden impactar negativamente en la seguridad o los derechos. Ejemplos: IA en infraestructuras críticas, contratación de personal, o diagnóstico médico. Exigen supervisión y transparencia.</p>
+                    </div>
+                    <!-- Riesgo Limitado -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-yellow-400">
+                        <h3 class="text-xl font-bold mb-3 text-yellow-600">Riesgo Limitado</h3>
+                        <p class="font-semibold mb-2">Obligaciones de Transparencia</p>
+                        <p class="text-sm">Los usuarios deben saber que están interactuando con una IA. Se aplica a chatbots, sistemas de recomendación y contenido generado como los "deepfakes".</p>
+                    </div>
+                    <!-- Riesgo Mínimo -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+                        <h3 class="text-xl font-bold mb-3 text-green-600">Riesgo Mínimo</h3>
+                        <p class="font-semibold mb-2">Uso Libre</p>
+                        <p class="text-sm">La gran mayoría de las aplicaciones de IA, como filtros de spam o videojuegos. No tienen obligaciones adicionales, aunque se fomentan códigos de conducta voluntarios.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-16">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#545454]">Puntos Clave de la Ley de IA</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-600">
+                        <div>
+                            <h4 class="font-bold text-lg text-[#00A6FB] mb-2">Objetivos Principales</h4>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Armonizar las normas de IA en toda la UE.</li>
+                                <li>Fomentar la inversión y la innovación en IA.</li>
+                                <li>Garantizar la seguridad y los derechos fundamentales.</li>
+                                <li>Mejorar la gobernanza y la aplicación de la ley.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#00A6FB] mb-2">Definición de Sistema de IA</h4>
+                            <p>La ley define un sistema de IA de forma amplia para ser tecnológicamente neutral y perdurar en el tiempo, cubriendo sistemas que operan con diferentes niveles de autonomía y pueden, para objetivos explícitos o implícitos, generar resultados como predicciones o decisiones que influyen en los entornos con los que interactúan.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-[#00A6FB] mb-2">Obligaciones para Sistemas de Alto Riesgo</h4>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Sistemas de gestión de riesgos adecuados.</li>
+                                <li>Alta calidad de los conjuntos de datos de entrenamiento.</li>
+                                <li>Documentación técnica y registros de actividad.</li>
+                                <li>Transparencia e información a los usuarios.</li>
+                                <li>Supervisión humana apropiada.</li>
+                                <li>Un alto nivel de robustez, seguridad y precisión.</li>
+                            </ul>
+                        </div>
+                        <div>
+                             <h4 class="font-bold text-lg text-[#00A6FB] mb-2">Gobernanza y Sanciones</h4>
+                             <p>Se creará un Comité Europeo de Inteligencia Artificial para facilitar una aplicación fluida. Las empresas que incumplan la ley se enfrentarán a multas de hasta 35 millones de euros o el 7% de su facturación anual mundial, la cifra que sea mayor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#545454]">Consulta a Nuestro Experto Virtual sobre la Ley de IA</h3>
+                    <p class="text-center text-slate-600 mb-6 max-w-2xl mx-auto">¿Tienes dudas? Plantea tu pregunta o un supuesto práctico sobre la Ley de IA y nuestro asistente virtual, impulsado por Gemini, te ofrecerá una respuesta informativa.</p>
+                    <div id="ai-law-chat-container" class="max-w-3xl mx-auto">
+                        <div id="chat-history" class="chat-history mb-4">
+                            <div class="ai-message"><p>Hola, soy tu asistente experto en la Ley de IA de la UE. ¿En qué puedo ayudarte hoy?</p></div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="text" id="chat-input" class="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#00A6FB] outline-none" placeholder="Ej: ¿Un sistema de RRHH que filtra CV es de alto riesgo?">
+                            <button id="chat-send-btn" class="bg-[#00A6FB] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#0085c9] transition-colors">Enviar</button>
+                        </div>
+                        <div id="chat-loader" class="mt-4 flex justify-center hidden">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="applications" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-[#545454]">Aplicaciones Prácticas con IA (Gemini)</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    
+                    <div class="bg-slate-50 rounded-lg shadow-inner p-8">
+                        <h3 class="text-2xl font-bold text-[#00A6FB] mb-4">✨ Simplificador de Texto</h3>
+                        <p class="mb-6">Esta herramienta demuestra la **Práctica 3**. Pega un texto complejo en el primer campo y la IA de Gemini, actuando como experta en accesibilidad, lo reescribirá en un formato de "Lectura Fácil", haciéndolo más claro y comprensible.</p>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="text-input" class="block font-semibold mb-1">Texto Original</label>
+                                <textarea id="text-input" rows="8" class="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#00A6FB] outline-none" placeholder="Escribe o pega tu texto aquí..."></textarea>
+                            </div>
+                            <div>
+                                <label for="simplified-output" class="block font-semibold mb-1">Texto Simplificado</label>
+                                <textarea id="simplified-output" rows="8" class="w-full p-2 border border-slate-300 rounded-md bg-white" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center mt-6">
+                            <button id="simplify-btn" class="bg-[#00A6FB] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#0085c9] transition-colors flex items-center justify-center mx-auto shadow-lg hover:shadow-xl">
+                                Simplificar Texto
+                            </button>
+                            <div id="simplify-loader" class="loader mx-auto mt-4 hidden"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg shadow-inner p-8">
+                        <h3 class="text-2xl font-bold text-[#00A6FB] mb-4">✨ Generador de Texto Alternativo</h3>
+                        <p class="mb-6">Esta herramienta demuestra la **Práctica 4**. Introduce la URL de una imagen y la IA de Gemini la analizará para crear una descripción detallada y objetiva, perfecta para el texto alternativo (alt text) que necesitan los lectores de pantalla.</p>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="image-url-input" class="block font-semibold mb-1">URL de la Imagen</label>
+                                <input type="text" id="image-url-input" class="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#F3B000] outline-none" placeholder="https://ejemplo.com/imagen.jpg">
+                            </div>
+                            <div class="text-center">
+                                <button id="alt-text-btn" class="bg-[#F3B000] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#d99d00] transition-colors flex items-center justify-center mx-auto shadow-lg hover:shadow-xl">
+                                    Generar Alt-Text
+                                </button>
+                                <div id="alt-text-loader" class="loader mx-auto mt-4 hidden"></div>
+                            </div>
+                            <div id="alt-text-result-container" class="mt-4 hidden">
+                                <img id="image-preview" src="" alt="Vista previa de la imagen" class="max-w-full max-h-48 mx-auto rounded-md shadow-sm mb-4 border-2 border-white">
+                                <p class="font-semibold text-lg">Texto Alternativo Sugerido:</p>
+                                <p id="alt-text-output" class="p-3 mt-2 border border-slate-200 rounded-md bg-white text-sm"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-[#00A6FB] mb-4">Conclusión: Tecnología con Propósito</h2>
+                <p class="max-w-3xl mx-auto text-xl text-[#545454]">
+                   La IA puede ser un motor de cambio para la inclusión, pero solo si se utiliza de forma <strong>crítica, ética y colaborativa</strong>. Estas buenas prácticas son un punto de partida para asegurar que la tecnología sirva para empoderar, y no para crear nuevas barreras.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-6 bg-slate-800 text-white">
+        <p>&copy; 2025 Página Web sobre IA para la Inclusión. Creado con fines educativos.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const apiKey = "";
+            const textApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const visionApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const simplifyBtn = document.getElementById('simplify-btn');
+            const textInput = document.getElementById('text-input');
+            const simplifiedOutput = document.getElementById('simplified-output');
+            const simplifyLoader = document.getElementById('simplify-loader');
+
+            const altTextBtn = document.getElementById('alt-text-btn');
+            const imageUrlInput = document.getElementById('image-url-input');
+            const altTextOutput = document.getElementById('alt-text-output');
+            const altTextLoader = document.getElementById('alt-text-loader');
+            const resultContainer = document.getElementById('alt-text-result-container');
+            const imagePreview = document.getElementById('image-preview');
+            
+            const chatHistory = document.getElementById('chat-history');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+            const chatLoader = document.getElementById('chat-loader');
+
+
+            async function callApiWithExponentialBackoff(apiUrl, payload) {
+                let delay = 1000;
+                for (let i = 0; i < 5; i++) {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return await response.json();
+                    } catch (error) {
+                        console.error(`Attempt ${i+1} failed. Retrying in ${delay}ms...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2;
+                    }
+                }
+                throw new Error("API call failed after multiple retries.");
+            }
+
+            simplifyBtn.addEventListener('click', async () => {
+                const inputText = textInput.value;
+                if (!inputText.trim()) {
+                    simplifiedOutput.value = "Por favor, introduce un texto para simplificar.";
+                    return;
+                }
+
+                simplifyLoader.classList.remove('hidden');
+                simplifyBtn.classList.add('hidden');
+                simplifiedOutput.value = "Procesando...";
+
+                const systemPrompt = "Actúa como un experto en accesibilidad y Lectura Fácil. Simplifica el siguiente texto para que sea claro, conciso y fácil de entender para personas con dificultades de comprensión lectora. Usa frases cortas y vocabulario sencillo. No añadas introducciones ni conclusiones, solo devuelve el texto simplificado.";
+                const payload = {
+                    contents: [{ parts: [{ text: inputText }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const result = await callApiWithExponentialBackoff(textApiUrl, payload);
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    simplifiedOutput.value = text || "No se pudo obtener una respuesta.";
+                } catch (error) {
+                    console.error('Error simplifying text:', error);
+                    simplifiedOutput.value = "Ocurrió un error al contactar con la API.";
+                } finally {
+                    simplifyLoader.classList.add('hidden');
+                    simplifyBtn.classList.remove('hidden');
+                }
+            });
+
+            const urlToBase64 = async (url) => {
+                 try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch image. Status: ${response.status}`);
+                    }
+                    const blob = await response.blob();
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+                } catch(e) {
+                    console.error("Error converting URL to Base64:", e);
+                    return null;
+                }
+            }
+            
+            altTextBtn.addEventListener('click', async () => {
+                const imageUrl = imageUrlInput.value;
+                 if (!imageUrl.trim()) {
+                    altTextOutput.textContent = "Por favor, introduce una URL de imagen.";
+                    resultContainer.classList.remove('hidden');
+                    imagePreview.src = '';
+                    return;
+                }
+
+                altTextLoader.classList.remove('hidden');
+                altTextBtn.classList.add('hidden');
+                resultContainer.classList.add('hidden');
+                altTextOutput.textContent = "";
+
+                const base64ImageData = await urlToBase64(imageUrl);
+                
+                if (!base64ImageData) {
+                    altTextOutput.textContent = "No se pudo cargar la imagen desde la URL. Verifica que sea correcta y accesible públicamente.";
+                    resultContainer.classList.remove('hidden');
+                    imagePreview.src = 'https://placehold.co/600x400/f15421/FFFFFF?text=Error';
+                    altTextLoader.classList.add('hidden');
+                    altTextBtn.classList.remove('hidden');
+                    return;
+                }
+
+                const payload = {
+                    contents: [{
+                        parts: [
+                            { text: "Describe esta imagen detalladamente para el texto alternativo (alt text) de una página web. Sé objetivo y conciso. La descripción debe ayudar a una persona con discapacidad visual a entender el contenido y el contexto de la imagen." },
+                            { inlineData: { mimeType: "image/jpeg", data: base64ImageData } }
+                        ]
+                    }],
+                };
+
+                try {
+                    const result = await callApiWithExponentialBackoff(visionApiUrl, payload);
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    altTextOutput.textContent = text || "No se pudo obtener una descripción.";
+                    imagePreview.src = imageUrl;
+                } catch (error) {
+                    console.error('Error generating alt text:', error);
+                    altTextOutput.textContent = "Ocurrió un error al contactar con la API.";
+                    imagePreview.src = 'https://placehold.co/600x400/f15421/FFFFFF?text=Error';
+                } finally {
+                    resultContainer.classList.remove('hidden');
+                    altTextLoader.classList.add('hidden');
+                    altTextBtn.classList.remove('hidden');
+                }
+            });
+            
+            const handleChatSubmit = async () => {
+                const userQuestion = chatInput.value;
+                if (!userQuestion.trim()) return;
+
+                appendMessage(userQuestion, 'user');
+                chatInput.value = '';
+                chatLoader.classList.remove('hidden');
+
+                const systemPrompt = "Actúas como un experto legal especializado en la Ley de Inteligencia Artificial de la Unión Europea. Tu propósito es responder preguntas sobre esta ley, interpretar sus artículos y aplicar sus principios a supuestos prácticos que te planteen. Tus respuestas deben ser claras, precisas y basarse estrictamente en el contenido y el espíritu de la normativa. No ofrezcas asesoramiento legal vinculante, sino explicaciones informativas.";
+                const payload = {
+                    contents: [{ parts: [{ text: userQuestion }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const result = await callApiWithExponentialBackoff(textApiUrl, payload);
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    appendMessage(text || "No se pudo obtener una respuesta.", 'ai');
+                } catch (error) {
+                    console.error('Error in AI Law Chat:', error);
+                    appendMessage("Ocurrió un error al contactar con la API.", 'ai');
+                } finally {
+                    chatLoader.classList.add('hidden');
+                }
+            };
+
+            chatSendBtn.addEventListener('click', handleChatSubmit);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleChatSubmit();
+                }
+            });
+
+            function appendMessage(text, sender) {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = sender === 'user' ? 'user-message' : 'ai-message';
+                
+                const messageBubble = document.createElement('p');
+                messageBubble.textContent = text;
+                
+                messageWrapper.appendChild(messageBubble);
+                chatHistory.appendChild(messageWrapper);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
